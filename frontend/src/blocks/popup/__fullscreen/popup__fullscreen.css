@@ -1,0 +1,7 @@
+.popup__fullscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 0;
+    max-width: 75vw;
+}

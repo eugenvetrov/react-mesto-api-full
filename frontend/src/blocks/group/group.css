@@ -1,0 +1,16 @@
+.group {
+    margin: 51px 0 0 0;
+    display: grid;
+    width: 880px;
+    grid-template-columns: repeat(3, 282px);
+    grid-gap: 17px 20px;
+    justify-content: center;
+    min-height: 361px;
+}
+
+@media screen and (max-width: 900px) {
+    .group {
+        grid-template-columns: 282px;
+        width: 100%;
+    }
+}

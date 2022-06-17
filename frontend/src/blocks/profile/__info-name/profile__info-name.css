@@ -1,0 +1,21 @@
+.profile__info-name {
+    grid-area: info-name;
+    margin: 0 18px 0 30px;
+    align-self: flex-end;
+    font-weight: 500;
+    font-size: 42px;
+    line-height: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+@media screen and (max-width: 900px) {
+    .profile__info-name{
+        margin: 26px 10px 0 0;
+        font-size: 27px;
+        line-height: 33px;
+        max-width: 254px;
+        justify-self: flex-end;
+    }
+}

@@ -1,0 +1,14 @@
+.header {
+    display: flex;
+    min-width: 880px;
+    border-bottom: #545454 1px solid;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 900px) {
+    .header {
+    min-width: 100%;
+    flex-wrap: wrap;
+    }
+}

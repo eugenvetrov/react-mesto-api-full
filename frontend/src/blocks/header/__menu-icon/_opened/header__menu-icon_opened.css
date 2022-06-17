@@ -1,0 +1,5 @@
+.header__menu-icon_opened {
+    background-image: url(../../../../images/close-icon.svg);
+    width: 20px;
+    height: 20px;
+}

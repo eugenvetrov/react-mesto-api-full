@@ -1,0 +1,9 @@
+.popup__form_profile-avatar {
+    min-height: 272px;
+}
+
+@media screen and (max-width: 900px) {
+    .popup__form_profile-avatar {
+    height: 272px;
+    }
+}

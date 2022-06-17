@@ -1,0 +1,10 @@
+.group__like-icon {
+    width: 22px;
+    height: 19px;
+    background-image: url("../../../images/like.svg");
+}
+
+.group__like-icon:hover {
+    opacity: .5;
+    cursor: pointer;
+}

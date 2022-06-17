@@ -1,0 +1,12 @@
+.group__like {
+    display: flex;
+    background-repeat: no-repeat;
+    background-color: #fff;
+    background-position: top 30px right 20px;
+    border: none;
+    grid-area: like;
+    margin: 0;
+    padding: 0;
+    align-items: flex-end;
+    justify-content: flex-start;
+}

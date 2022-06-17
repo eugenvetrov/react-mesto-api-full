@@ -1,0 +1,26 @@
+.profile__info-edit {
+    background-color: #000;
+    border: none;
+    width: 24px;
+    min-height: 24px;
+    align-self: flex-end;
+    object-fit: contain;
+    background-image: url(../../../images/edit-btn.svg);
+    grid-area: info-edit;
+    margin: 0 18px 0.56em 0;
+    justify-self: flex-start;
+}
+
+.profile__info-edit:hover {
+    opacity: .6;
+    cursor: pointer;
+}
+
+@media screen and (max-width: 900px) {
+    .profile__info-edit{
+        margin: 0 0 0.42em 0;
+        background-image: url(../../../images/edit-btn-mobile.svg);
+        width: 18px;
+        min-height: 18px;
+    }
+}

@@ -1,0 +1,17 @@
+.popup__check-status {
+    font-weight: 900;
+    font-size: 24px;
+    line-height: 29px;
+    color: #000000;
+    text-align: center;
+    margin: 32px auto 0;
+    width: 358px;
+}
+
+@media screen and (max-width: 900px) {
+    .popup__check-status {
+        font-size: 20px;
+        line-height: 24px;
+        width: 244px;
+    }
+}

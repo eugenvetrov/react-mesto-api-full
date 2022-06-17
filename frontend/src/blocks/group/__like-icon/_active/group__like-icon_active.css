@@ -1,0 +1,10 @@
+.group__like-icon_active {
+    border: none;
+    background-image: none;
+    background-image: url("../../../../images/like-active.svg");
+    filter: drop-shadow(rgba(0, 0, 0, .25) 0 4px 4px);
+}
+
+.group__like-icon_active:hover {
+    opacity: 1;
+}

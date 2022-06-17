@@ -1,0 +1,23 @@
+.profile {
+    display: grid;
+    width: 880px;
+    flex-wrap: wrap;
+    grid-template-areas: "avatar-edit info-name info-edit add"
+                          "avatar-edit info-description info-description add";
+    grid-template-rows: 60px 60px;
+    grid-template-columns: 120px minmax(294px, max-content) 1fr 1fr;
+    margin: 40px auto 0 auto;
+}
+
+@media screen and (max-width: 900px) {
+    .profile{
+    grid-template-areas: "avatar-edit avatar-edit"
+                         "info-name info-edit"
+                         "info-description info-description"
+                         "add add";
+    grid-template-rows: 120px max-content max-content 50px;
+    grid-template-columns: auto;
+    max-width: 282px;
+    justify-items: center;
+    }
+}

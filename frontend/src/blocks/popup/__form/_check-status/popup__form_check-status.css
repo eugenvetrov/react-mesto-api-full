@@ -1,0 +1,9 @@
+.popup__form_check-status{
+    min-height: 330px;
+}
+
+@media screen and (max-width: 900px) {
+    .popup__form_check-status {
+    height: 308px;
+    }
+}
