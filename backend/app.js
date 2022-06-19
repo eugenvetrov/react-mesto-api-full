@@ -6,6 +6,7 @@ const { errors } = require('celebrate');
 const NotFoundError = require('./errors/notFound');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const corsHandler = require('./middlewares/corsHandler');
 
 const { PORT = 3000 } = process.env;
 const app = express();
@@ -17,6 +18,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
+app.use(corsHandler);
 
 app.use('/', require('./routes/index'));
 app.use('/users', auth, require('./routes/users'));
