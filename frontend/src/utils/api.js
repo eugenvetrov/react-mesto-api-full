@@ -124,15 +124,14 @@ class Api {
 }
 
 const api = new Api({
-  baseUrl: "https://mesto.nomoreparties.co/v1/cohort-37",
+  baseUrl: "http://api.evg.vetrow.mesto.nomoreparties.sbs",
   headers: {
-    authorization: "bcc22094-6aca-4aef-ba1e-307f93bc116d",
     "Content-type": "application/json",
   },
 });
 
 const auth = new Api({
-  baseUrl: "https://auth.nomoreparties.co",
+  baseUrl: "http://api.evg.vetrow.mesto.nomoreparties.sbs",
   headers: {
     "Content-Type": "application/json",
   },
