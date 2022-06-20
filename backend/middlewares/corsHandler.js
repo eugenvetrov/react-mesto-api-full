@@ -1,7 +1,7 @@
 module.exports = (req, res, next) => {
   const allowedCors = [
-    'https://evg.vetrow.mesto.nomoreparties.sbs/',
-    'http://evg.vetrow.mesto.nomoreparties.sbs/',
+    'https://evg.vetrow.mesto.nomoreparties.sbs',
+    'http://evg.vetrow.mesto.nomoreparties.sbs',
     'localhost:3000',
   ];
 
@@ -16,8 +16,8 @@ module.exports = (req, res, next) => {
   }
 
   if (method === 'OPTIONS') {
-    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     res.header('Access-Control-Allow-Headers', requestHeaders);
+    res.header('Access-Control-Allow-Methods', DEFAULT_ALLOWED_METHODS);
     return res.end();
   }
 
