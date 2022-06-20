@@ -11,21 +11,14 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const { PORT = 5000 } = process.env;
 const app = express();
 
-const corsOptions = {
-  origin: ['http://evg.vetrow.mesto.nomoreparties.sbs', 'https://evg.vetrow.mesto.nomoreparties.sbs'],
-  credentials: true,
-  optionSuccessStatus: 200,
-};
-
 mongoose.connect('mongodb://localhost:27017/mestodb');
 
+app.use(cors());
 app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(requestLogger);
-
-app.use(cors(corsOptions));
 
 app.use('/', require('./routes/index'));
 app.use('/users', auth, require('./routes/users'));
