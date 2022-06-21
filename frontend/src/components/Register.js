@@ -24,7 +24,6 @@ function Register(props) {
         email: values.email,
       });
     }
-    console.log(values);
     if (isSomeFieldEmpty) alert("Простите! Поля не должны быть пустыми.");
     if (props.formErrors.email || props.formErrors.password)
       alert(`${props.formErrors.email} ${props.formErrors.password}`);

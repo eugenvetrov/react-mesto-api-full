@@ -43,8 +43,10 @@ function App() {
     api
       .getCards()
       .then((cards) => {
-        setCards(cards);
-      })
+        cards ? setCards(cards) : 
+        console.log("Пользовательские карточки отсутствуют");
+      }
+        )
       .catch((err) => {
         console.log(err);
       });
