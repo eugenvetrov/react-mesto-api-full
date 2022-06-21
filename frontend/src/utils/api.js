@@ -133,6 +133,7 @@ const api = new Api({
 const auth = new Api({
   baseUrl: "http://api.evg.vetrow.mesto.nomoreparties.sbs",
   headers: {
+    authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-Type": "application/json",
   },
 });
