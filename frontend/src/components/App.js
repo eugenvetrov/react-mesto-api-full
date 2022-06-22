@@ -139,8 +139,9 @@ function App() {
     api
       .addCard(card)
       .then((newCard) => {
+        console.log(newCard);
         cards ? 
-        setCards([newCard.data, ...cards]) : setCards([newCard.data]);
+        setCards([newCard.card, ...cards]) : setCards([newCard.card]);
         setIsAddPlacePopupOpen(false);
       })
       .catch((error) => console.log(error));

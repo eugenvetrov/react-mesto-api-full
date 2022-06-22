@@ -5,6 +5,7 @@ import Card from "./Card.js";
 
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);
+  console.log(props);
   const cards = props.cards ? props.cards.map((item) => {
     return (
       <Card
