@@ -45,14 +45,13 @@ function App() {
     api
       .getCards()
       .then((data) => {
-        setCards(data.data);
+        setCards(data.cards);
       }
         )
       .catch((err) => {
         console.log(err);
       });
     }
-    
   }, [loggedIn]);
 
   useEffect(() => {
@@ -81,7 +80,6 @@ function App() {
   };
 
   function handleCardLike(card) {
-    console.log(card.likes);
     const isLiked = card.likes.some((i) => i === currentUser?._id);
     const request = isLiked
       ? api.deleteLikeCard(card._id)
@@ -162,8 +160,7 @@ function App() {
       .then((res) => {
         if (res.token) {
           localStorage.setItem("jwt", res.token);
-          setLoggedIn(true);
-          navigate("/");
+          tokenCheck();
         } else {
           console.log("Неизвестная ошибка");
         }
@@ -196,6 +193,7 @@ function App() {
         .then((res) => {
           setLoggedIn(true);
           setEmail(res.data.email);
+          setCurrentUser(res.data);
           navigate("/");
         })
         .catch((err) => {
