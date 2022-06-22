@@ -51,17 +51,23 @@ class Api {
     }).then(this._checkResponse);
   }
 
-  putLikeCard(cardId) {
+  putLikeCard(cardId, jwt) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "PUT",
-      headers: this._headeres,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${jwt}`,
+      },
     }).then(this._checkResponse);
   }
 
-  deleteLikeCard(cardId) {
+  deleteLikeCard(cardId, jwt) {
     return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
       method: "DELETE",
-      headers: this._headeres,
+      headers: {
+        ...this._headers,
+        Authorization: `Bearer ${jwt}`,
+      },
     }).then(this._checkResponse);
   }
 

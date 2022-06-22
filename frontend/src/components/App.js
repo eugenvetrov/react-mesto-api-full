@@ -78,16 +78,18 @@ function App() {
   const handleCardClick = (card) => {
     setSelectedCard(card);
   };
-
-  function handleCardLike(card) {
+  const handleCardLike = (card) => {
     const isLiked = card.likes.some((i) => i === currentUser?._id);
+    const jwt = localStorage.getItem("jwt")
     const request = isLiked
-      ? api.deleteLikeCard(card._id)
-      : api.putLikeCard(card._id);
+      ? api.deleteLikeCard(card._id, jwt)
+      : api.putLikeCard(card._id, jwt);
     request
       .then((newCard) => {
         setCards((cards) =>
-          cards.map((c) => (c._id === card._id ? newCard.data : c))
+          { 
+            
+            return cards.map((c) => (c._id === card._id ? newCard.data : c))}
         );
       })
       .catch((err) => {
@@ -184,7 +186,6 @@ function App() {
         showAuthError();
       });
   };
-
   const tokenCheck = () => {
     if (localStorage.getItem("jwt")) {
       const jwt = localStorage.getItem("jwt");
