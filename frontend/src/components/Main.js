@@ -5,7 +5,7 @@ import Card from "./Card.js";
 
 function Main(props) {
   const currentUser = useContext(CurrentUserContext);
-  const Cards = props.cards.map((item) => {
+  const cards = props.cards ? props.cards.map((item) => {
     return (
       <Card
         key={item._id}
@@ -15,7 +15,7 @@ function Main(props) {
         onCardDelete={props.onCardDelete}
       />
     );
-  });
+  }) : null;
 
   return (
     <main className="main">
@@ -46,7 +46,7 @@ function Main(props) {
           onClick={props.onAddPlace}
         ></button>
       </section>
-      <section className="group">{Cards}</section>
+      <section className="group">{cards}</section>
     </main>
   );
 }

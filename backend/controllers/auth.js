@@ -5,12 +5,14 @@ const ServerError = require('../errors/server');
 const ConflictError = require('../errors/conflict');
 const BadRequestError = require('../errors/badRequest');
 
+const { NODE_ENV, JWT_SECRET, SALT_LENGTH } = process.env;
+
 const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
   bcrypt
-    .hash(password, 10)
+    .hash(password, SALT_LENGTH)
     .then((hash) => {
       User.validate({
         name, about, avatar, email, password,
@@ -46,7 +48,7 @@ const login = (req, res, next) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
       res.status(200).cookie('jwt', token, { httpOnly: true }).send({ token });
     })
     .catch((err) => {

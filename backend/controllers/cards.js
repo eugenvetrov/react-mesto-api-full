@@ -7,18 +7,18 @@ const Forbidden = require('../errors/forbidden');
 
 const getCards = (req, res, next) => {
   Card.find({})
-    .then((cards) => res.send({ data: cards }))
+    .then((cards) => res.send({ cards }))
     .catch(() => {
       next(new ServerError());
     });
 };
 
 const createCard = (req, res, next) => {
-  const owner = req.user._id;
+  const owner = req.user;
   const { name, link } = req.body;
 
   Card.create({ name, link, owner })
-    .then((card) => res.send({ data: card }))
+    .then((card) => res.send({ card }))
     .catch((err) => {
       if (err.name === 'ValidationError') {
         const fields = Object.keys(err.errors).join(', ');

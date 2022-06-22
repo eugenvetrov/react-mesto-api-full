@@ -35,24 +35,25 @@ function App() {
 
   const navigate = useNavigate();
   useEffect(() => {
+    tokenCheck();
+    if (loggedIn){
     api
       .getUserInfo()
-      .then((user) => setCurrentUser(user))
+      .then((user) => setCurrentUser(user.data))
       .catch((error) => console.log(error));
 
     api
       .getCards()
-      .then((cards) => {
-        cards ? setCards(cards) : 
-        console.log("Пользовательские карточки отсутствуют");
+      .then((data) => {
+        setCards(data.data);
       }
         )
       .catch((err) => {
         console.log(err);
       });
-
-    tokenCheck();
-  }, []);
+    }
+    
+  }, [loggedIn]);
 
   useEffect(() => {
     setFormValid(!Object.values(formErrors).some((item) => item !== ""));
@@ -80,14 +81,15 @@ function App() {
   };
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    console.log(card.likes);
+    const isLiked = card.likes.some((i) => i === currentUser?._id);
     const request = isLiked
       ? api.deleteLikeCard(card._id)
       : api.putLikeCard(card._id);
     request
       .then((newCard) => {
         setCards((cards) =>
-          cards.map((c) => (c._id === card._id ? newCard : c))
+          cards.map((c) => (c._id === card._id ? newCard.data : c))
         );
       })
       .catch((err) => {
@@ -105,7 +107,7 @@ function App() {
     api
       .deleteCard(cardForDelete)
       .then(() => {
-        setCards(cards.filter((c) => c != cardForDelete));
+        setCards(cards.filter((c) => c !== cardForDelete));
       })
       .then(setIsDeleteCardPopupOpen(false))
       .catch((err) => {
@@ -117,7 +119,7 @@ function App() {
     api
       .setUserInfo(user.name, user.about)
       .then((user) => {
-        setCurrentUser(user);
+        setCurrentUser(user.data);
         setIsEditProfilePopupOpen(false);
       })
       .catch((error) => console.log(error));
@@ -127,7 +129,7 @@ function App() {
     api
       .changeAvatar(link.avatar)
       .then((user) => {
-        setCurrentUser(user);
+        setCurrentUser(user.data);
         setIsEditAvatarPopupOpen(false);
       })
       .catch((error) => console.log(error));
@@ -137,7 +139,8 @@ function App() {
     api
       .addCard(card)
       .then((newCard) => {
-        setCards([newCard, ...cards]);
+        cards ? 
+        setCards([newCard.data, ...cards]) : setCards([newCard.data]);
         setIsAddPlacePopupOpen(false);
       })
       .catch((error) => console.log(error));

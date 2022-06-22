@@ -3,8 +3,8 @@ import { CurrentUserContext } from "../contexts/CurrentUserContext.js";
 
 function Card(props) {
   const currentUser = useContext(CurrentUserContext);
-  const isOwn = props.card.owner._id === currentUser?._id;
-  const isLiked = props.card.likes.some((i) => i._id === currentUser?._id);
+  const isOwn = props.card.owner === currentUser?._id;
+  const isLiked = props.card.likes.some((i) => i === currentUser?._id);
   const cardDeleteButtonClassName = `group__delete-icon ${
     isOwn ? "" : "group__delete-icon_disable"
   }`;
@@ -22,7 +22,7 @@ function Card(props) {
     props.onCardDelete(props.card);
   }
   return (
-    <article className="group__rectangle">
+    <article className="group__rectangle" key={props.card._id}>
       <img
         className="group__image"
         src={props.card.link}
@@ -42,7 +42,7 @@ function Card(props) {
           onClick={handleLikeClick}
         ></div>
       </button>
-      <p className="group__like-number">{props.card.likes.length}</p>
+      <p className="group__like-number">{props.card.likes ? props.card.likes.length : ''}</p>
     </article>
   );
 }
