@@ -17,7 +17,7 @@ export const useFormValidation = () => {
     }
   };
   const validateField = (field, value) => {
-    if (value == 0) setFormValid(false);
+    if (value === 0) setFormValid(false);
     switch (field) {
       case "name":
         if (value.length >= 2 && value.length <= 40) {
@@ -95,7 +95,7 @@ export const useFormValidation = () => {
       case "password":
         if (
           value.match(
-            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i
+            /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i 
           )
         ) {
           setFormErrors((prev) => ({

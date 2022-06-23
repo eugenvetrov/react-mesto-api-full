@@ -37,12 +37,12 @@ function App() {
   useEffect(() => {
     tokenCheck();
     if (loggedIn){
-    api
+    api()
       .getUserInfo()
       .then((user) => setCurrentUser(user.data))
       .catch((error) => console.log(error));
 
-    api
+    api()
       .getCards()
       .then((data) => {
         setCards(data.cards);
@@ -82,8 +82,8 @@ function App() {
     const isLiked = card.likes.some((i) => i === currentUser?._id);
     const jwt = localStorage.getItem("jwt")
     const request = isLiked
-      ? api.deleteLikeCard(card._id, jwt)
-      : api.putLikeCard(card._id, jwt);
+      ? api().deleteLikeCard(card._id, jwt)
+      : api().putLikeCard(card._id, jwt);
     request
       .then((newCard) => {
         setCards((cards) =>
@@ -104,7 +104,7 @@ function App() {
 
   function handleDeleteCard(event) {
     event.preventDefault();
-    api
+    api()
       .deleteCard(cardForDelete)
       .then(() => {
         setCards(cards.filter((c) => c !== cardForDelete));
@@ -116,7 +116,7 @@ function App() {
   }
 
   const handleUpdateUser = (user) => {
-    api
+    api()
       .setUserInfo(user.name, user.about)
       .then((user) => {
         setCurrentUser(user.data);
@@ -126,7 +126,7 @@ function App() {
   };
 
   const handleUpdateAvatar = (link) => {
-    api
+    api()
       .changeAvatar(link.avatar)
       .then((user) => {
         setCurrentUser(user.data);
@@ -136,10 +136,9 @@ function App() {
   };
 
   const handleAddPlace = (card) => {
-    api
+    api()
       .addCard(card)
       .then((newCard) => {
-        console.log(newCard);
         cards ? 
         setCards([newCard.card, ...cards]) : setCards([newCard.card]);
         setIsAddPlacePopupOpen(false);

@@ -129,7 +129,7 @@ class Api {
   }
 }
 
-const api = new Api({
+const api = () => new Api({
   baseUrl: "http://api.evg.vetrow.mesto.nomoreparties.sbs",
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
