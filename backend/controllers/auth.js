@@ -12,7 +12,7 @@ const createUser = (req, res, next) => {
     name, about, avatar, email, password,
   } = req.body;
   bcrypt
-    .hash(password, SALT_LENGTH)
+    .hash(password, `${SALT_LENGTH}`)
     .then((hash) => {
       User.validate({
         name, about, avatar, email, password,
