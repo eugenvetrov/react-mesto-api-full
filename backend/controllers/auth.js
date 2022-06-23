@@ -5,14 +5,14 @@ const ServerError = require('../errors/server');
 const ConflictError = require('../errors/conflict');
 const BadRequestError = require('../errors/badRequest');
 
-const { NODE_ENV, JWT_SECRET, SALT_LENGTH } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env;
 
 const createUser = (req, res, next) => {
   const {
     name, about, avatar, email, password,
   } = req.body;
   bcrypt
-    .hash(password, `${SALT_LENGTH}`)
+    .hash(password, 10)
     .then((hash) => {
       User.validate({
         name, about, avatar, email, password,
