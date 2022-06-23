@@ -80,10 +80,9 @@ function App() {
   };
   const handleCardLike = (card) => {
     const isLiked = card.likes.some((i) => i === currentUser?._id);
-    const jwt = localStorage.getItem("jwt")
     const request = isLiked
-      ? api().deleteLikeCard(card._id, jwt)
-      : api().putLikeCard(card._id, jwt);
+      ? api().deleteLikeCard(card._id)
+      : api().putLikeCard(card._id);
     request
       .then((newCard) => {
         setCards((cards) =>
