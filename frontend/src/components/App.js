@@ -177,7 +177,6 @@ function App() {
     auth
       .register(user)
       .then((res) => {
-        console.log(res);
         setEmail(res.data.email);
         showAuthOk();
         navigate("/sign-in");
