@@ -5,7 +5,7 @@ const ServerError = require('../errors/server');
 const ConflictError = require('../errors/conflict');
 const BadRequestError = require('../errors/badRequest');
 
-const { NODE_ENV, JWT_SECRET } = process.env;
+const { NODE_ENV, JWT_SECRET } = process.env ? process.env : { NODE_ENV: '', JWT_SECRET: 'our_little_secret' };
 
 const createUser = (req, res, next) => {
   const {
@@ -48,7 +48,7 @@ const login = (req, res, next) => {
 
   User.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'our_little_secret', { expiresIn: '7d' });
       res.status(200).cookie('jwt', token, { httpOnly: true }).send({ token });
     })
     .catch((err) => {
@@ -58,7 +58,7 @@ const login = (req, res, next) => {
 
 const clearCookie = (req, res, next) => {
   try {
-    res.status(403).clearCookie('jwt').send({ message: 'Выход' });
+    res.status(200).clearCookie('jwt').send({ message: 'Выход' });
   } catch (err) {
     next(new ServerError());
   }

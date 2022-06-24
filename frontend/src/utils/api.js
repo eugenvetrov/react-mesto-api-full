@@ -124,7 +124,7 @@ class Api {
 }
 
 const api = () => new Api({
-  baseUrl: "http://api.evg.vetrow.mesto.nomoreparties.sbs",
+  baseUrl: "https://api.evg.vetrow.mesto.nomoreparties.sbs",
   headers: {
     authorization: `Bearer ${localStorage.getItem("jwt")}`,
     "Content-type": "application/json",
@@ -132,7 +132,7 @@ const api = () => new Api({
 });
 
 const auth = new Api({
-  baseUrl: "http://api.evg.vetrow.mesto.nomoreparties.sbs",
+  baseUrl: "https://api.evg.vetrow.mesto.nomoreparties.sbs",
   headers: {
     "Content-Type": "application/json",
   },

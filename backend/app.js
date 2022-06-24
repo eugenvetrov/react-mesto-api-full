@@ -8,6 +8,7 @@ const cors = require('cors');
 const NotFoundError = require('./errors/notFound');
 const auth = require('./middlewares/auth');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const errorHandler = require('./middlewares/errorHandler');
 
 const { PORT = 5000 } = process.env;
 const app = express();
@@ -37,12 +38,6 @@ app.use('*', auth, (req, res, next) => {
 
 app.use(errorLogger);
 
-const errorHandler = (err, req, res, next) => {
-  const statusCode = err.code || 500;
-  const message = statusCode === 500 ? 'На сервере произошла ошибка' : err.message;
-  res.status(statusCode).send({ message });
-  next();
-};
 app.use(errors());
 app.use(errorHandler);
 
